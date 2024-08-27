@@ -1,4 +1,4 @@
-FROM ruby:slim
+FROM ruby:3.1.2
 
 LABEL Name=rubyonrails7demoapplication Version=0.0.1
 
@@ -8,6 +8,9 @@ WORKDIR /app
 COPY . /app
 
 COPY Gemfile Gemfile.lock ./
-RUN bundle install
 
-CMD ["ruby", "rubyonrails7demoapplication.rb"]
+RUN gem install bundler
+RUN bundle install
+RUN rails db:seed
+
+CMD [ "puma"]

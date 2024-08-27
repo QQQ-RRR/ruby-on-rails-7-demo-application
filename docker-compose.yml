@@ -1,0 +1,19 @@
+version: "3"
+volumes:
+  db:
+
+services:
+  db:
+    image: keinos/sqlite3:latest
+
+  web:
+    image: rubyrail:latest   
+    command: puma -p 3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - redis
+  redis:
+    image: redis:6.0
+
