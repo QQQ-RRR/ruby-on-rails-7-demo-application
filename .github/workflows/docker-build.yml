@@ -16,7 +16,7 @@ jobs:
             - name: push image to DockerHub
               run: |
                 docker login -u aborodiy -p ${{secrets.DOCKER_HUB_TOKEN}}
-                docker push aborodiy/ruby-test-app:latest
+                docker push aborodiy/ruby-test-app:${{github.sha}}-$(date +%s)
 
 
 
