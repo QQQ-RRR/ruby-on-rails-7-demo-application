@@ -11,8 +11,8 @@ services:
     image: redis:6.0
 
   web:
-    build: .
-    #image: rubyrail:latest   
+    #build: .
+    image: aborodiy/ruby-test-app:latest   
     command: bash config/run.sh
     ports:
       - "3000:3000"
