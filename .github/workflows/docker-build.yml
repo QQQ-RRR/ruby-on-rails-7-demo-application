@@ -1,8 +1,10 @@
 name: Docker build and push image
 on: 
     push:
-        branches: main
-
+        branches: 
+        - main 
+        - qa 
+        - staging
 jobs:
     build_images:  
         runs-on: ubuntu-latest
@@ -10,7 +12,7 @@ jobs:
             - name: checkout
               uses: actions/checkout@v4
             - name: build image
-              run: docker build . -t aborodiy/ruby-test-app:latest
+              run: docker build . -t aborodiy/ruby-test-app:${{GITHUB_BRANCH}}-${{GITHUB_SHA}}-$(date +%s)
             - name: push image to DockerHub
               run: |
                 docker login -u aborodiy -p ${{secrets.DOCKER_HUB_TOKEN}}
