@@ -11,3 +11,5 @@ Category.create(name: "Poltics")
 Category.create(name: "Local")
 Category.create(name: "National")
 Category.create(name: "Global")
+Category.create(name: "Test1")
+

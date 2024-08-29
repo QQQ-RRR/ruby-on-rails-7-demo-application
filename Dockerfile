@@ -2,17 +2,18 @@
 FROM ruby:3.1.2-slim-bullseye AS builder
 LABEL Name=rubytestapp Version=0.0.1
 WORKDIR /app
-RUN gem install bundler
 RUN apt-get update && \
     apt-get install -y \
-    build-essential 
+    build-essential \
+    libpq-dev
+RUN gem install bundler
 COPY Gemfile Gemfile.lock ./
 RUN bundle install     
 #Stage2 Final
 FROM ruby:3.1.2-slim-bullseye AS final 
 WORKDIR /app
 COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
-RUN rails db:seed
+COPY --from=builder /usr/lib/x86_64-linux-gnu/ /usr/lib/x86_64-linux-gnu/
 COPY . /app
 EXPOSE 3000
-CMD ["puma"]
+CMD ["config/run.sh"]

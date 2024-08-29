@@ -1,16 +1,21 @@
 version: "3"
 services:
   db:
-    image: keinos/sqlite3:latest
+    image: postgres:16
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+       - POSTGRES_USER=postgres 
+       - POSTGRES_PASSWORD=postgres
+  redis:
+    image: redis:6.0
+
   web:
     build: .
     #image: rubyrail:latest   
-    command: puma -p 3000
+    command: bash config/run.sh
     ports:
       - "3000:3000"
     depends_on:
       - db
       - redis
-  redis:
-    image: redis:6.0
-
