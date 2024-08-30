@@ -1,7 +1,11 @@
 name: Docker build and push image
-on:
-    [workflow_dispatch]
-
+on: 
+    
+    push:
+        branches: 
+        - main 
+        - qa 
+        - staging
 jobs:
     build_images:  
         runs-on: ubuntu-latest
