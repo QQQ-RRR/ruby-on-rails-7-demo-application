@@ -16,7 +16,7 @@ jobs:
                 id: t
                 uses: kaven-universe/github-action-current-date-time@v1.4.0
                 with:
-                  format: "YYYY:MM:DD HH:mm:ss"
+                  format: "YYYY-MM-DD HH-mm-ss"
             -
                 name: Set up Docker Buildx
                 uses: docker/setup-buildx-action@v3
