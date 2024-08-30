@@ -11,7 +11,7 @@ jobs:
             IMAGE: aborodiy/ruby-test-app
         runs-on: ubuntu-latest
         steps:
-            
+
             - name: Generate build ID
               id: prep
               run: |
@@ -33,6 +33,8 @@ jobs:
               with: 
                 push: true
                 tags: |
-                    ${{ env.IMAGE }}:${{ steps.prep.outputs.BUILD_ID }}            
+                    ${{ env.IMAGE }}:${{ steps.prep.outputs.BUILD_ID }}
+                cache-from: type=gha
+                cache-to: type=gha,mode=max            
 
 
