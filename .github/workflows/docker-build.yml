@@ -32,7 +32,7 @@ jobs:
               uses: docker/build-push-action@v6
               with: 
                 push: true
-                tags: aborodiy/ruby-test-app:${{github.ref_name}}-${{github.sha}}-${{ steps.t.outputs.time }}"
+                tags: aborodiy/ruby-test-app:${{github.ref_name}}-${{github.sha}}-${{ steps.t.outputs.time }}
             
 
 
