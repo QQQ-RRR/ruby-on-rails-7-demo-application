@@ -36,5 +36,5 @@ jobs:
                 push: true
                 tags: |
                     ${{ env.IMAGE }}:${{ steps.prep.outputs.BUILD_ID }}
-                cache-from: type=registry,ref=aborodiy/${{ env.IMAGE }}:buildcache
-                cache-to: type=registry,ref=aborodiy/${{ env.IMAGE }}:buildcache,mode=max
+                cache-from: type=registry,ref=aborodiy/ruby-app:buildcache
+                cache-to: type=registry,ref=aborodiy/ruby-app:buildcache,mode=max
