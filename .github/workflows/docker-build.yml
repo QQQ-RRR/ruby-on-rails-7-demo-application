@@ -36,7 +36,5 @@ jobs:
                 push: true
                 tags: |
                     ${{ env.IMAGE }}:${{ steps.prep.outputs.BUILD_ID }}
-                cache-from: type=gha
-                cache-to: type=gha,mode=max            
-
-
+                cache-from: type=registry,ref=aborodiy/app:buildcache
+                cache-to: type=registry,ref=aborodiy/app:buildcache,mode=max
