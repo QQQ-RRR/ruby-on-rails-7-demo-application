@@ -11,9 +11,13 @@ COPY Gemfile Gemfile.lock ./
 RUN bundle install     
 #Stage2 Final
 FROM ruby:3.1.2-slim-bullseye AS final 
+RUN apt-get update && \
+    apt-get install -y \
+    libpq-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
-COPY --from=builder /usr/lib/x86_64-linux-gnu/ /usr/lib/x86_64-linux-gnu/
 COPY . /app
 EXPOSE 3000
 CMD ["config/run.sh"]
