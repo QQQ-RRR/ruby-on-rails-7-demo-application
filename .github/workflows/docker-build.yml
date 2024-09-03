@@ -1,19 +1,23 @@
 name: Docker build and push image
 on:  
-    workflow_dispatch:
-    
-    push:
-        branches: 
-        - main 
-        - qa 
-        - staging
+    pull_request:
+        types: [opened, closed]
+        branches:
+        - main  
+        - 'feature/**'
 jobs:
-    build-push:
+    job_for_pr:
+        if: github.event_name == 'pull_request' && github.event.action == 'opened'
+        runs-on: ubuntu-latest
+        steps:
+          - name: adasd
+            run: "This is a pull request on a feature branch"
+    job_for_acc_pr:
+        if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true&& github.event.pull_request.base.ref == 'main'
         env:
             IMAGE: aborodiy/ruby-test-app
         runs-on: ubuntu-latest
         steps:
-
             - name: Generate build ID
               id: prep
               run: |
