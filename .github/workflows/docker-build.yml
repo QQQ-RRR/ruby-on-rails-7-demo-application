@@ -11,7 +11,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
           - name: adasd
-            run: "This is a pull request on a feature branch"
+            run: echo "This is a pull request on a feature branch"
     job_for_acc_pr:
         if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true&& github.event.pull_request.base.ref == 'main'
         env:
